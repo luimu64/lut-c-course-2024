@@ -2,59 +2,32 @@
 #include <string.h>
 #include <stdlib.h>
 
-typedef struct laskuData
+int main(int args, char *argv[])
 {
-    float ekaArgumentti;
-    char modifieri;
-    float tokaArgumentti;
-} LASKUDATA;
-
-int main(void)
-{
-    LASKUDATA lsk;
-    char laskuInput[30];
-    char *tok;
-    float tulos;
-
-    fgets(laskuInput, 28, stdin);
-    tok = strtok(laskuInput, " ");
-
-    for (int i = 0; tok != 0; i++)
+    if (argv[1])
     {
-        switch (i)
+        switch (argv[2][0])
         {
-        case 0:
-            lsk.ekaArgumentti = atof(tok);
+        case '+':
+            printf("%.1f + %.1f = %.2f\n", atof(argv[1]), atof(argv[3]), atof(argv[1]) + atof(argv[3]));
             break;
-        case 1:
-            lsk.modifieri = tok[0];
+        case '-':
+            printf("%.1f - %.1f = %.2f\n", atof(argv[1]), atof(argv[3]), atof(argv[1]) - atof(argv[3]));
             break;
-        case 2:
-            lsk.tokaArgumentti = atof(tok);
+        case 'x':
+            printf("%.1f x %.1f = %.2f\n", atof(argv[1]), atof(argv[3]), atof(argv[1]) * atof(argv[3]));
+            break;
+        case '/':
+            printf("%.1f / %.1f = %.2f\n", atof(argv[1]), atof(argv[3]), atof(argv[1]) / atof(argv[3]));
+            break;
+        default:
+            printf("Virheellinen syöte.\n");
             break;
         }
-        tok = strtok(0, " ");
     }
+    else
+        printf("Et antanut syötteitä.\n");
 
-    switch (lsk.modifieri)
-    {
-    case '+':
-        printf(" = %.2f\n", lsk.ekaArgumentti + lsk.tokaArgumentti);
-        break;
-    case '-':
-        printf(" = %.2f\n", lsk.ekaArgumentti - lsk.tokaArgumentti);
-        break;
-    case 'x':
-        printf(" = %.2f\n", lsk.ekaArgumentti * lsk.tokaArgumentti);
-        break;
-    case '/':
-        printf(" = %.2f\n", lsk.ekaArgumentti / lsk.tokaArgumentti);
-        break;
-    default:
-        printf("Virheellinen syöte.\n");
-        break;
-    }
-
-        printf("Kiitos ohjelman käytöstä.\n");
+    printf("Kiitos ohjelman käytöstä.\n");
     return (0);
 }
